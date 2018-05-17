@@ -1,0 +1,39 @@
+plugins {
+    id "java"
+    id "org.springframework.boot" version "2.0.2.RELEASE"
+}
+
+repositories {
+    jcenter()
+}
+
+jar {
+    baseName = "spring-boot-netty"
+}
+
+bootRun {
+    systemProperties System.properties
+}
+
+dependencies {
+
+    /** Spring Boot Stack **/
+    def springBootVersion = '2.0.2.RELEASE'
+    compile "org.springframework.boot:spring-boot-starter-webflux:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-data-mongodb-reactive:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-logging:${springBootVersion}"
+
+    /** Tests **/
+    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
+
+}
+
+test {
+    ignoreFailures = true
+    minHeapSize = "128m"
+    maxHeapSize = "512m"
+
+    beforeTest { testName ->
+        logger.lifecycle("Running: " +  testName)
+    }
+}
