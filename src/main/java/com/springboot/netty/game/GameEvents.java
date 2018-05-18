@@ -11,4 +11,12 @@ public class GameEvents {
         this.model = model;
         this.when = when;
     }
+
+    public Game getModel() {
+        return model;
+    }
+
+    public Date getWhen() {
+        return when;
+    }
 }

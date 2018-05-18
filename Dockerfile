@@ -1,9 +1,17 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:10-jre
 
-ENV HOME=/home/spring-boot-netty
+ENV HOME=/home/spring-webflux-netty
 
 WORKDIR $HOME
 
-ADD build/libs/spring-boot-netty.jar spring-boot-netty.jar
+RUN apt-get update
 
-CMD ["java", "-jar", "spring-boot-netty.jar"]
+RUN yes | apt-get install netcat
+
+COPY build/libs/spring-webflux-netty.jar .
+
+COPY entrypoint.sh .
+
+RUN chmod 755 spring-webflux-netty.jar
+
+RUN chmod 755 entrypoint.sh

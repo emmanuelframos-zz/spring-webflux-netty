@@ -1,0 +1,27 @@
+version: '3'
+services:
+  mongo:
+    container_name: mongo
+    image: 'mongo:3.6.4'
+    ports:
+      - '27017:27017'
+    volumes:
+      - 'mongo:/data/db'
+    networks:
+      - spring-network
+  spring-webflux-netty:
+    container_name: spring-webflux-netty
+    build:
+      context: .
+    ports:
+      - '8080:8080'
+    entrypoint: /home/spring-webflux-netty/entrypoint.sh
+    depends_on:
+      - mongo
+    networks:
+      - spring-network
+volumes:
+  mongo:
+networks:
+  spring-network:
+     driver: bridge

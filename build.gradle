@@ -8,7 +8,7 @@ repositories {
 }
 
 jar {
-    baseName = "spring-boot-netty"
+    baseName = "spring-webflux-netty"
 }
 
 bootRun {
@@ -23,17 +23,4 @@ dependencies {
     compile "org.springframework.boot:spring-boot-starter-data-mongodb-reactive:${springBootVersion}"
     compile "org.springframework.boot:spring-boot-starter-logging:${springBootVersion}"
 
-    /** Tests **/
-    testCompile "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
-
-}
-
-test {
-    ignoreFailures = true
-    minHeapSize = "128m"
-    maxHeapSize = "512m"
-
-    beforeTest { testName ->
-        logger.lifecycle("Running: " +  testName)
-    }
 }

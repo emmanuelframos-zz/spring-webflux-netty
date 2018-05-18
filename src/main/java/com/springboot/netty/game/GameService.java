@@ -35,7 +35,5 @@ public class GameService {
             return Flux.zip(interval, events)
                     .map(Tuple2::getT2);
         });
-
-
     }
 }
